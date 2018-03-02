@@ -405,8 +405,7 @@ class VirtualNetworksOperations(object):
          ~azure.mgmt.network.v2017_11_01.models.VirtualNetworkPaged[~azure.mgmt.network.v2017_11_01.models.VirtualNetwork]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.list_all.metadata['url']
@@ -435,6 +434,11 @@ class VirtualNetworksOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters)
+            return request, header_parameters
+
+        def internal_paging(next_link=None):
+            request, header_parameters = prepare_request(next_link)
+
             response = self._client.send(
                 request, header_parameters, stream=False, **operation_config)
 
@@ -446,12 +450,10 @@ class VirtualNetworksOperations(object):
             return response
 
         # Deserialize response
-        deserialized = models.VirtualNetworkPaged(internal_paging, self._deserialize.dependencies)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.VirtualNetworkPaged(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.VirtualNetworkPaged(internal_paging, self._deserialize.dependencies, header_dict)
 
         return deserialized
     list_all.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Network/virtualNetworks'}
@@ -472,8 +474,7 @@ class VirtualNetworksOperations(object):
          ~azure.mgmt.network.v2017_11_01.models.VirtualNetworkPaged[~azure.mgmt.network.v2017_11_01.models.VirtualNetwork]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.list.metadata['url']
@@ -503,6 +504,11 @@ class VirtualNetworksOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters)
+            return request, header_parameters
+
+        def internal_paging(next_link=None):
+            request, header_parameters = prepare_request(next_link)
+
             response = self._client.send(
                 request, header_parameters, stream=False, **operation_config)
 
@@ -514,12 +520,10 @@ class VirtualNetworksOperations(object):
             return response
 
         # Deserialize response
-        deserialized = models.VirtualNetworkPaged(internal_paging, self._deserialize.dependencies)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.VirtualNetworkPaged(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.VirtualNetworkPaged(internal_paging, self._deserialize.dependencies, header_dict)
 
         return deserialized
     list.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks'}
@@ -609,8 +613,7 @@ class VirtualNetworksOperations(object):
          ~azure.mgmt.network.v2017_11_01.models.VirtualNetworkUsagePaged[~azure.mgmt.network.v2017_11_01.models.VirtualNetworkUsage]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.list_usage.metadata['url']
@@ -641,6 +644,11 @@ class VirtualNetworksOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters)
+            return request, header_parameters
+
+        def internal_paging(next_link=None):
+            request, header_parameters = prepare_request(next_link)
+
             response = self._client.send(
                 request, header_parameters, stream=False, **operation_config)
 
@@ -652,12 +660,10 @@ class VirtualNetworksOperations(object):
             return response
 
         # Deserialize response
-        deserialized = models.VirtualNetworkUsagePaged(internal_paging, self._deserialize.dependencies)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.VirtualNetworkUsagePaged(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.VirtualNetworkUsagePaged(internal_paging, self._deserialize.dependencies, header_dict)
 
         return deserialized
     list_usage.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}/usages'}

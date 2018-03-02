@@ -61,8 +61,7 @@ class NetworkInterfacesOperations(object):
          ~azure.mgmt.network.v2016_09_01.models.NetworkInterfacePaged[~azure.mgmt.network.v2016_09_01.models.NetworkInterface]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.list_virtual_machine_scale_set_vm_network_interfaces.metadata['url']
@@ -94,6 +93,11 @@ class NetworkInterfacesOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters)
+            return request, header_parameters
+
+        def internal_paging(next_link=None):
+            request, header_parameters = prepare_request(next_link)
+
             response = self._client.send(
                 request, header_parameters, stream=False, **operation_config)
 
@@ -105,12 +109,10 @@ class NetworkInterfacesOperations(object):
             return response
 
         # Deserialize response
-        deserialized = models.NetworkInterfacePaged(internal_paging, self._deserialize.dependencies)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.NetworkInterfacePaged(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.NetworkInterfacePaged(internal_paging, self._deserialize.dependencies, header_dict)
 
         return deserialized
     list_virtual_machine_scale_set_vm_network_interfaces.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.Compute/virtualMachineScaleSets/{virtualMachineScaleSetName}/virtualMachines/{virtualmachineIndex}/networkInterfaces'}
@@ -134,8 +136,7 @@ class NetworkInterfacesOperations(object):
          ~azure.mgmt.network.v2016_09_01.models.NetworkInterfacePaged[~azure.mgmt.network.v2016_09_01.models.NetworkInterface]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.list_virtual_machine_scale_set_network_interfaces.metadata['url']
@@ -166,6 +167,11 @@ class NetworkInterfacesOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters)
+            return request, header_parameters
+
+        def internal_paging(next_link=None):
+            request, header_parameters = prepare_request(next_link)
+
             response = self._client.send(
                 request, header_parameters, stream=False, **operation_config)
 
@@ -177,12 +183,10 @@ class NetworkInterfacesOperations(object):
             return response
 
         # Deserialize response
-        deserialized = models.NetworkInterfacePaged(internal_paging, self._deserialize.dependencies)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.NetworkInterfacePaged(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.NetworkInterfacePaged(internal_paging, self._deserialize.dependencies, header_dict)
 
         return deserialized
     list_virtual_machine_scale_set_network_interfaces.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.Compute/virtualMachineScaleSets/{virtualMachineScaleSetName}/networkInterfaces'}
@@ -524,8 +528,7 @@ class NetworkInterfacesOperations(object):
          ~azure.mgmt.network.v2016_09_01.models.NetworkInterfacePaged[~azure.mgmt.network.v2016_09_01.models.NetworkInterface]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.list_all.metadata['url']
@@ -554,6 +557,11 @@ class NetworkInterfacesOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters)
+            return request, header_parameters
+
+        def internal_paging(next_link=None):
+            request, header_parameters = prepare_request(next_link)
+
             response = self._client.send(
                 request, header_parameters, stream=False, **operation_config)
 
@@ -565,12 +573,10 @@ class NetworkInterfacesOperations(object):
             return response
 
         # Deserialize response
-        deserialized = models.NetworkInterfacePaged(internal_paging, self._deserialize.dependencies)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.NetworkInterfacePaged(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.NetworkInterfacePaged(internal_paging, self._deserialize.dependencies, header_dict)
 
         return deserialized
     list_all.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Network/networkInterfaces'}
@@ -591,8 +597,7 @@ class NetworkInterfacesOperations(object):
          ~azure.mgmt.network.v2016_09_01.models.NetworkInterfacePaged[~azure.mgmt.network.v2016_09_01.models.NetworkInterface]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.list.metadata['url']
@@ -622,6 +627,11 @@ class NetworkInterfacesOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters)
+            return request, header_parameters
+
+        def internal_paging(next_link=None):
+            request, header_parameters = prepare_request(next_link)
+
             response = self._client.send(
                 request, header_parameters, stream=False, **operation_config)
 
@@ -633,12 +643,10 @@ class NetworkInterfacesOperations(object):
             return response
 
         # Deserialize response
-        deserialized = models.NetworkInterfacePaged(internal_paging, self._deserialize.dependencies)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.NetworkInterfacePaged(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.NetworkInterfacePaged(internal_paging, self._deserialize.dependencies, header_dict)
 
         return deserialized
     list.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkInterfaces'}

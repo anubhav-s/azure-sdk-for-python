@@ -9,30 +9,58 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .network_interfaces_operations import NetworkInterfacesOperations
-from .application_gateways_operations import ApplicationGatewaysOperations
-from .express_route_circuit_authorizations_operations import ExpressRouteCircuitAuthorizationsOperations
-from .express_route_circuit_peerings_operations import ExpressRouteCircuitPeeringsOperations
-from .express_route_circuits_operations import ExpressRouteCircuitsOperations
-from .express_route_service_providers_operations import ExpressRouteServiceProvidersOperations
-from .load_balancers_operations import LoadBalancersOperations
-from .network_security_groups_operations import NetworkSecurityGroupsOperations
-from .security_rules_operations import SecurityRulesOperations
-from .network_watchers_operations import NetworkWatchersOperations
-from .packet_captures_operations import PacketCapturesOperations
-from .public_ip_addresses_operations import PublicIPAddressesOperations
-from .route_filters_operations import RouteFiltersOperations
-from .route_filter_rules_operations import RouteFilterRulesOperations
-from .route_tables_operations import RouteTablesOperations
-from .routes_operations import RoutesOperations
-from .bgp_service_communities_operations import BgpServiceCommunitiesOperations
-from .usages_operations import UsagesOperations
-from .virtual_networks_operations import VirtualNetworksOperations
-from .subnets_operations import SubnetsOperations
-from .virtual_network_peerings_operations import VirtualNetworkPeeringsOperations
-from .virtual_network_gateways_operations import VirtualNetworkGatewaysOperations
-from .virtual_network_gateway_connections_operations import VirtualNetworkGatewayConnectionsOperations
-from .local_network_gateways_operations import LocalNetworkGatewaysOperations
+try:
+    from .network_interfaces_operations_async import NetworkInterfacesOperations
+    from .application_gateways_operations_async import ApplicationGatewaysOperations
+    from .express_route_circuit_authorizations_operations_async import ExpressRouteCircuitAuthorizationsOperations
+    from .express_route_circuit_peerings_operations_async import ExpressRouteCircuitPeeringsOperations
+    from .express_route_circuits_operations_async import ExpressRouteCircuitsOperations
+    from .express_route_service_providers_operations_async import ExpressRouteServiceProvidersOperations
+    from .load_balancers_operations_async import LoadBalancersOperations
+    from .network_security_groups_operations_async import NetworkSecurityGroupsOperations
+    from .security_rules_operations_async import SecurityRulesOperations
+    from .network_watchers_operations_async import NetworkWatchersOperations
+    from .packet_captures_operations_async import PacketCapturesOperations
+    from .public_ip_addresses_operations_async import PublicIPAddressesOperations
+    from .route_filters_operations_async import RouteFiltersOperations
+    from .route_filter_rules_operations_async import RouteFilterRulesOperations
+    from .route_tables_operations_async import RouteTablesOperations
+    from .routes_operations_async import RoutesOperations
+    from .bgp_service_communities_operations_async import BgpServiceCommunitiesOperations
+    from .usages_operations_async import UsagesOperations
+    from .virtual_networks_operations_async import VirtualNetworksOperations
+    from .subnets_operations_async import SubnetsOperations
+    from .virtual_network_peerings_operations_async import VirtualNetworkPeeringsOperations
+    from .virtual_network_gateways_operations_async import VirtualNetworkGatewaysOperations
+    from .virtual_network_gateway_connections_operations_async import VirtualNetworkGatewayConnectionsOperations
+    from .local_network_gateways_operations_async import LocalNetworkGatewaysOperations
+    from .network_management_client_operations_async import NetworkManagementClientOperationsMixin
+except (SyntaxError, ImportError):
+    from .network_interfaces_operations import NetworkInterfacesOperations
+    from .application_gateways_operations import ApplicationGatewaysOperations
+    from .express_route_circuit_authorizations_operations import ExpressRouteCircuitAuthorizationsOperations
+    from .express_route_circuit_peerings_operations import ExpressRouteCircuitPeeringsOperations
+    from .express_route_circuits_operations import ExpressRouteCircuitsOperations
+    from .express_route_service_providers_operations import ExpressRouteServiceProvidersOperations
+    from .load_balancers_operations import LoadBalancersOperations
+    from .network_security_groups_operations import NetworkSecurityGroupsOperations
+    from .security_rules_operations import SecurityRulesOperations
+    from .network_watchers_operations import NetworkWatchersOperations
+    from .packet_captures_operations import PacketCapturesOperations
+    from .public_ip_addresses_operations import PublicIPAddressesOperations
+    from .route_filters_operations import RouteFiltersOperations
+    from .route_filter_rules_operations import RouteFilterRulesOperations
+    from .route_tables_operations import RouteTablesOperations
+    from .routes_operations import RoutesOperations
+    from .bgp_service_communities_operations import BgpServiceCommunitiesOperations
+    from .usages_operations import UsagesOperations
+    from .virtual_networks_operations import VirtualNetworksOperations
+    from .subnets_operations import SubnetsOperations
+    from .virtual_network_peerings_operations import VirtualNetworkPeeringsOperations
+    from .virtual_network_gateways_operations import VirtualNetworkGatewaysOperations
+    from .virtual_network_gateway_connections_operations import VirtualNetworkGatewayConnectionsOperations
+    from .local_network_gateways_operations import LocalNetworkGatewaysOperations
+    from .network_management_client_operations import NetworkManagementClientOperationsMixin
 
 __all__ = [
     'NetworkInterfacesOperations',
@@ -59,4 +87,5 @@ __all__ = [
     'VirtualNetworkGatewaysOperations',
     'VirtualNetworkGatewayConnectionsOperations',
     'LocalNetworkGatewaysOperations',
+    'NetworkManagementClientOperationsMixin',
 ]

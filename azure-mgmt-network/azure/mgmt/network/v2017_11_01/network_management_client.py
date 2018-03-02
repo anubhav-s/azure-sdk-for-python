@@ -13,48 +13,44 @@ from msrest.service_client import ServiceClient
 from msrest import Serializer, Deserializer
 from msrestazure import AzureConfiguration
 from .version import VERSION
-from msrest.pipeline import ClientRawResponse
-from msrestazure.azure_exceptions import CloudError
-from msrest.polling import LROPoller, NoPolling
-from msrestazure.polling.arm_polling import ARMPolling
-import uuid
-from .operations.application_gateways_operations import ApplicationGatewaysOperations
-from .operations.application_security_groups_operations import ApplicationSecurityGroupsOperations
-from .operations.available_endpoint_services_operations import AvailableEndpointServicesOperations
-from .operations.express_route_circuit_authorizations_operations import ExpressRouteCircuitAuthorizationsOperations
-from .operations.express_route_circuit_peerings_operations import ExpressRouteCircuitPeeringsOperations
-from .operations.express_route_circuits_operations import ExpressRouteCircuitsOperations
-from .operations.express_route_service_providers_operations import ExpressRouteServiceProvidersOperations
-from .operations.load_balancers_operations import LoadBalancersOperations
-from .operations.load_balancer_backend_address_pools_operations import LoadBalancerBackendAddressPoolsOperations
-from .operations.load_balancer_frontend_ip_configurations_operations import LoadBalancerFrontendIPConfigurationsOperations
-from .operations.inbound_nat_rules_operations import InboundNatRulesOperations
-from .operations.load_balancer_load_balancing_rules_operations import LoadBalancerLoadBalancingRulesOperations
-from .operations.load_balancer_network_interfaces_operations import LoadBalancerNetworkInterfacesOperations
-from .operations.load_balancer_probes_operations import LoadBalancerProbesOperations
-from .operations.network_interfaces_operations import NetworkInterfacesOperations
-from .operations.network_interface_ip_configurations_operations import NetworkInterfaceIPConfigurationsOperations
-from .operations.network_interface_load_balancers_operations import NetworkInterfaceLoadBalancersOperations
-from .operations.network_security_groups_operations import NetworkSecurityGroupsOperations
-from .operations.security_rules_operations import SecurityRulesOperations
-from .operations.default_security_rules_operations import DefaultSecurityRulesOperations
-from .operations.network_watchers_operations import NetworkWatchersOperations
-from .operations.packet_captures_operations import PacketCapturesOperations
-from .operations.connection_monitors_operations import ConnectionMonitorsOperations
-from .operations.operations import Operations
-from .operations.public_ip_addresses_operations import PublicIPAddressesOperations
-from .operations.route_filters_operations import RouteFiltersOperations
-from .operations.route_filter_rules_operations import RouteFilterRulesOperations
-from .operations.route_tables_operations import RouteTablesOperations
-from .operations.routes_operations import RoutesOperations
-from .operations.bgp_service_communities_operations import BgpServiceCommunitiesOperations
-from .operations.usages_operations import UsagesOperations
-from .operations.virtual_networks_operations import VirtualNetworksOperations
-from .operations.subnets_operations import SubnetsOperations
-from .operations.virtual_network_peerings_operations import VirtualNetworkPeeringsOperations
-from .operations.virtual_network_gateways_operations import VirtualNetworkGatewaysOperations
-from .operations.virtual_network_gateway_connections_operations import VirtualNetworkGatewayConnectionsOperations
-from .operations.local_network_gateways_operations import LocalNetworkGatewaysOperations
+from .operations import NetworkManagementClientOperationsMixin
+from .operations import ApplicationGatewaysOperations
+from .operations import ApplicationSecurityGroupsOperations
+from .operations import AvailableEndpointServicesOperations
+from .operations import ExpressRouteCircuitAuthorizationsOperations
+from .operations import ExpressRouteCircuitPeeringsOperations
+from .operations import ExpressRouteCircuitsOperations
+from .operations import ExpressRouteServiceProvidersOperations
+from .operations import LoadBalancersOperations
+from .operations import LoadBalancerBackendAddressPoolsOperations
+from .operations import LoadBalancerFrontendIPConfigurationsOperations
+from .operations import InboundNatRulesOperations
+from .operations import LoadBalancerLoadBalancingRulesOperations
+from .operations import LoadBalancerNetworkInterfacesOperations
+from .operations import LoadBalancerProbesOperations
+from .operations import NetworkInterfacesOperations
+from .operations import NetworkInterfaceIPConfigurationsOperations
+from .operations import NetworkInterfaceLoadBalancersOperations
+from .operations import NetworkSecurityGroupsOperations
+from .operations import SecurityRulesOperations
+from .operations import DefaultSecurityRulesOperations
+from .operations import NetworkWatchersOperations
+from .operations import PacketCapturesOperations
+from .operations import ConnectionMonitorsOperations
+from .operations import Operations
+from .operations import PublicIPAddressesOperations
+from .operations import RouteFiltersOperations
+from .operations import RouteFilterRulesOperations
+from .operations import RouteTablesOperations
+from .operations import RoutesOperations
+from .operations import BgpServiceCommunitiesOperations
+from .operations import UsagesOperations
+from .operations import VirtualNetworksOperations
+from .operations import SubnetsOperations
+from .operations import VirtualNetworkPeeringsOperations
+from .operations import VirtualNetworkGatewaysOperations
+from .operations import VirtualNetworkGatewayConnectionsOperations
+from .operations import LocalNetworkGatewaysOperations
 from . import models
 
 
@@ -92,7 +88,7 @@ class NetworkManagementClientConfiguration(AzureConfiguration):
         self.subscription_id = subscription_id
 
 
-class NetworkManagementClient(object):
+class NetworkManagementClient(NetworkManagementClientOperationsMixin, object):
     """Network Client
 
     :ivar config: Configuration for client.
@@ -267,71 +263,3 @@ class NetworkManagementClient(object):
             self._client, self.config, self._serialize, self._deserialize)
         self.local_network_gateways = LocalNetworkGatewaysOperations(
             self._client, self.config, self._serialize, self._deserialize)
-
-    def check_dns_name_availability(
-            self, location, domain_name_label, custom_headers=None, raw=False, **operation_config):
-        """Checks whether a domain name in the cloudapp.azure.com zone is
-        available for use.
-
-        :param location: The location of the domain name.
-        :type location: str
-        :param domain_name_label: The domain name to be verified. It must
-         conform to the following regular expression:
-         ^[a-z][a-z0-9-]{1,61}[a-z0-9]$.
-        :type domain_name_label: str
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
-        :return: DnsNameAvailabilityResult or ClientRawResponse if raw=true
-        :rtype:
-         ~azure.mgmt.network.v2017_11_01.models.DnsNameAvailabilityResult or
-         ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
-        """
-        api_version = "2017-11-01"
-
-        # Construct URL
-        url = self.check_dns_name_availability.metadata['url']
-        path_format_arguments = {
-            'location': self._serialize.url("location", location, 'str'),
-            'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str')
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}
-        query_parameters['domainNameLabel'] = self._serialize.query("domain_name_label", domain_name_label, 'str')
-        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
-
-        # Construct headers
-        header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
-            header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
-
-        if response.status_code not in [200]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
-
-        deserialized = None
-
-        if response.status_code == 200:
-            deserialized = self._deserialize('DnsNameAvailabilityResult', response)
-
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
-        return deserialized
-    check_dns_name_availability.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Network/locations/{location}/CheckDnsNameAvailability'}

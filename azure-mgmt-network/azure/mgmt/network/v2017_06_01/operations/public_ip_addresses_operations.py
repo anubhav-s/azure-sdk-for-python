@@ -309,8 +309,7 @@ class PublicIPAddressesOperations(object):
         """
         api_version = "2017-06-01"
 
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.list_all.metadata['url']
@@ -339,6 +338,11 @@ class PublicIPAddressesOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters)
+            return request, header_parameters
+
+        def internal_paging(next_link=None):
+            request, header_parameters = prepare_request(next_link)
+
             response = self._client.send(
                 request, header_parameters, stream=False, **operation_config)
 
@@ -350,12 +354,10 @@ class PublicIPAddressesOperations(object):
             return response
 
         # Deserialize response
-        deserialized = models.PublicIPAddressPaged(internal_paging, self._deserialize.dependencies)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.PublicIPAddressPaged(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.PublicIPAddressPaged(internal_paging, self._deserialize.dependencies, header_dict)
 
         return deserialized
     list_all.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Network/publicIPAddresses'}
@@ -378,8 +380,7 @@ class PublicIPAddressesOperations(object):
         """
         api_version = "2017-06-01"
 
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.list.metadata['url']
@@ -409,6 +410,11 @@ class PublicIPAddressesOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters)
+            return request, header_parameters
+
+        def internal_paging(next_link=None):
+            request, header_parameters = prepare_request(next_link)
+
             response = self._client.send(
                 request, header_parameters, stream=False, **operation_config)
 
@@ -420,12 +426,10 @@ class PublicIPAddressesOperations(object):
             return response
 
         # Deserialize response
-        deserialized = models.PublicIPAddressPaged(internal_paging, self._deserialize.dependencies)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.PublicIPAddressPaged(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.PublicIPAddressPaged(internal_paging, self._deserialize.dependencies, header_dict)
 
         return deserialized
     list.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/publicIPAddresses'}
@@ -452,8 +456,7 @@ class PublicIPAddressesOperations(object):
         """
         api_version = "2017-03-30"
 
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.list_virtual_machine_scale_set_public_ip_addresses.metadata['url']
@@ -484,6 +487,11 @@ class PublicIPAddressesOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters)
+            return request, header_parameters
+
+        def internal_paging(next_link=None):
+            request, header_parameters = prepare_request(next_link)
+
             response = self._client.send(
                 request, header_parameters, stream=False, **operation_config)
 
@@ -495,12 +503,10 @@ class PublicIPAddressesOperations(object):
             return response
 
         # Deserialize response
-        deserialized = models.PublicIPAddressPaged(internal_paging, self._deserialize.dependencies)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.PublicIPAddressPaged(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.PublicIPAddressPaged(internal_paging, self._deserialize.dependencies, header_dict)
 
         return deserialized
     list_virtual_machine_scale_set_public_ip_addresses.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{virtualMachineScaleSetName}/publicipaddresses'}
@@ -533,8 +539,7 @@ class PublicIPAddressesOperations(object):
         """
         api_version = "2017-03-30"
 
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.list_virtual_machine_scale_set_vm_public_ip_addresses.metadata['url']
@@ -568,6 +573,11 @@ class PublicIPAddressesOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters)
+            return request, header_parameters
+
+        def internal_paging(next_link=None):
+            request, header_parameters = prepare_request(next_link)
+
             response = self._client.send(
                 request, header_parameters, stream=False, **operation_config)
 
@@ -579,12 +589,10 @@ class PublicIPAddressesOperations(object):
             return response
 
         # Deserialize response
-        deserialized = models.PublicIPAddressPaged(internal_paging, self._deserialize.dependencies)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.PublicIPAddressPaged(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.PublicIPAddressPaged(internal_paging, self._deserialize.dependencies, header_dict)
 
         return deserialized
     list_virtual_machine_scale_set_vm_public_ip_addresses.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{virtualMachineScaleSetName}/virtualMachines/{virtualmachineIndex}/networkInterfaces/{networkInterfaceName}/ipconfigurations/{ipConfigurationName}/publicipaddresses'}

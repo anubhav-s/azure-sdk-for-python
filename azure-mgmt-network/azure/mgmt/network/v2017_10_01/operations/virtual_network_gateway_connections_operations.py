@@ -588,8 +588,7 @@ class VirtualNetworkGatewayConnectionsOperations(object):
          ~azure.mgmt.network.v2017_10_01.models.VirtualNetworkGatewayConnectionPaged[~azure.mgmt.network.v2017_10_01.models.VirtualNetworkGatewayConnection]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.list.metadata['url']
@@ -619,6 +618,11 @@ class VirtualNetworkGatewayConnectionsOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters)
+            return request, header_parameters
+
+        def internal_paging(next_link=None):
+            request, header_parameters = prepare_request(next_link)
+
             response = self._client.send(
                 request, header_parameters, stream=False, **operation_config)
 
@@ -630,12 +634,10 @@ class VirtualNetworkGatewayConnectionsOperations(object):
             return response
 
         # Deserialize response
-        deserialized = models.VirtualNetworkGatewayConnectionPaged(internal_paging, self._deserialize.dependencies)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.VirtualNetworkGatewayConnectionPaged(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.VirtualNetworkGatewayConnectionPaged(internal_paging, self._deserialize.dependencies, header_dict)
 
         return deserialized
     list.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/connections'}

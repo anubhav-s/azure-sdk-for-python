@@ -301,8 +301,7 @@ class ApplicationGatewaysOperations(object):
          ~azure.mgmt.network.v2017_06_01.models.ApplicationGatewayPaged[~azure.mgmt.network.v2017_06_01.models.ApplicationGateway]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.list.metadata['url']
@@ -332,6 +331,11 @@ class ApplicationGatewaysOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters)
+            return request, header_parameters
+
+        def internal_paging(next_link=None):
+            request, header_parameters = prepare_request(next_link)
+
             response = self._client.send(
                 request, header_parameters, stream=False, **operation_config)
 
@@ -343,12 +347,10 @@ class ApplicationGatewaysOperations(object):
             return response
 
         # Deserialize response
-        deserialized = models.ApplicationGatewayPaged(internal_paging, self._deserialize.dependencies)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.ApplicationGatewayPaged(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.ApplicationGatewayPaged(internal_paging, self._deserialize.dependencies, header_dict)
 
         return deserialized
     list.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/applicationGateways'}
@@ -367,8 +369,7 @@ class ApplicationGatewaysOperations(object):
          ~azure.mgmt.network.v2017_06_01.models.ApplicationGatewayPaged[~azure.mgmt.network.v2017_06_01.models.ApplicationGateway]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.list_all.metadata['url']
@@ -397,6 +398,11 @@ class ApplicationGatewaysOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters)
+            return request, header_parameters
+
+        def internal_paging(next_link=None):
+            request, header_parameters = prepare_request(next_link)
+
             response = self._client.send(
                 request, header_parameters, stream=False, **operation_config)
 
@@ -408,12 +414,10 @@ class ApplicationGatewaysOperations(object):
             return response
 
         # Deserialize response
-        deserialized = models.ApplicationGatewayPaged(internal_paging, self._deserialize.dependencies)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.ApplicationGatewayPaged(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.ApplicationGatewayPaged(internal_paging, self._deserialize.dependencies, header_dict)
 
         return deserialized
     list_all.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Network/applicationGateways'}
@@ -810,8 +814,7 @@ class ApplicationGatewaysOperations(object):
          ~azure.mgmt.network.v2017_06_01.models.ApplicationGatewaySslPredefinedPolicyPaged[~azure.mgmt.network.v2017_06_01.models.ApplicationGatewaySslPredefinedPolicy]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.list_available_ssl_predefined_policies.metadata['url']
@@ -840,6 +843,11 @@ class ApplicationGatewaysOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters)
+            return request, header_parameters
+
+        def internal_paging(next_link=None):
+            request, header_parameters = prepare_request(next_link)
+
             response = self._client.send(
                 request, header_parameters, stream=False, **operation_config)
 
@@ -851,12 +859,10 @@ class ApplicationGatewaysOperations(object):
             return response
 
         # Deserialize response
-        deserialized = models.ApplicationGatewaySslPredefinedPolicyPaged(internal_paging, self._deserialize.dependencies)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.ApplicationGatewaySslPredefinedPolicyPaged(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.ApplicationGatewaySslPredefinedPolicyPaged(internal_paging, self._deserialize.dependencies, header_dict)
 
         return deserialized
     list_available_ssl_predefined_policies.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Network/applicationGatewayAvailableSslOptions/default/predefinedPolicies'}

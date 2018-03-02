@@ -9,43 +9,84 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .application_gateways_operations import ApplicationGatewaysOperations
-from .application_security_groups_operations import ApplicationSecurityGroupsOperations
-from .available_endpoint_services_operations import AvailableEndpointServicesOperations
-from .express_route_circuit_authorizations_operations import ExpressRouteCircuitAuthorizationsOperations
-from .express_route_circuit_peerings_operations import ExpressRouteCircuitPeeringsOperations
-from .express_route_circuits_operations import ExpressRouteCircuitsOperations
-from .express_route_service_providers_operations import ExpressRouteServiceProvidersOperations
-from .load_balancers_operations import LoadBalancersOperations
-from .load_balancer_backend_address_pools_operations import LoadBalancerBackendAddressPoolsOperations
-from .load_balancer_frontend_ip_configurations_operations import LoadBalancerFrontendIPConfigurationsOperations
-from .inbound_nat_rules_operations import InboundNatRulesOperations
-from .load_balancer_load_balancing_rules_operations import LoadBalancerLoadBalancingRulesOperations
-from .load_balancer_network_interfaces_operations import LoadBalancerNetworkInterfacesOperations
-from .load_balancer_probes_operations import LoadBalancerProbesOperations
-from .network_interfaces_operations import NetworkInterfacesOperations
-from .network_interface_ip_configurations_operations import NetworkInterfaceIPConfigurationsOperations
-from .network_interface_load_balancers_operations import NetworkInterfaceLoadBalancersOperations
-from .network_security_groups_operations import NetworkSecurityGroupsOperations
-from .security_rules_operations import SecurityRulesOperations
-from .default_security_rules_operations import DefaultSecurityRulesOperations
-from .network_watchers_operations import NetworkWatchersOperations
-from .packet_captures_operations import PacketCapturesOperations
-from .connection_monitors_operations import ConnectionMonitorsOperations
-from .operations import Operations
-from .public_ip_addresses_operations import PublicIPAddressesOperations
-from .route_filters_operations import RouteFiltersOperations
-from .route_filter_rules_operations import RouteFilterRulesOperations
-from .route_tables_operations import RouteTablesOperations
-from .routes_operations import RoutesOperations
-from .bgp_service_communities_operations import BgpServiceCommunitiesOperations
-from .usages_operations import UsagesOperations
-from .virtual_networks_operations import VirtualNetworksOperations
-from .subnets_operations import SubnetsOperations
-from .virtual_network_peerings_operations import VirtualNetworkPeeringsOperations
-from .virtual_network_gateways_operations import VirtualNetworkGatewaysOperations
-from .virtual_network_gateway_connections_operations import VirtualNetworkGatewayConnectionsOperations
-from .local_network_gateways_operations import LocalNetworkGatewaysOperations
+try:
+    from .application_gateways_operations_async import ApplicationGatewaysOperations
+    from .application_security_groups_operations_async import ApplicationSecurityGroupsOperations
+    from .available_endpoint_services_operations_async import AvailableEndpointServicesOperations
+    from .express_route_circuit_authorizations_operations_async import ExpressRouteCircuitAuthorizationsOperations
+    from .express_route_circuit_peerings_operations_async import ExpressRouteCircuitPeeringsOperations
+    from .express_route_circuits_operations_async import ExpressRouteCircuitsOperations
+    from .express_route_service_providers_operations_async import ExpressRouteServiceProvidersOperations
+    from .load_balancers_operations_async import LoadBalancersOperations
+    from .load_balancer_backend_address_pools_operations_async import LoadBalancerBackendAddressPoolsOperations
+    from .load_balancer_frontend_ip_configurations_operations_async import LoadBalancerFrontendIPConfigurationsOperations
+    from .inbound_nat_rules_operations_async import InboundNatRulesOperations
+    from .load_balancer_load_balancing_rules_operations_async import LoadBalancerLoadBalancingRulesOperations
+    from .load_balancer_network_interfaces_operations_async import LoadBalancerNetworkInterfacesOperations
+    from .load_balancer_probes_operations_async import LoadBalancerProbesOperations
+    from .network_interfaces_operations_async import NetworkInterfacesOperations
+    from .network_interface_ip_configurations_operations_async import NetworkInterfaceIPConfigurationsOperations
+    from .network_interface_load_balancers_operations_async import NetworkInterfaceLoadBalancersOperations
+    from .network_security_groups_operations_async import NetworkSecurityGroupsOperations
+    from .security_rules_operations_async import SecurityRulesOperations
+    from .default_security_rules_operations_async import DefaultSecurityRulesOperations
+    from .network_watchers_operations_async import NetworkWatchersOperations
+    from .packet_captures_operations_async import PacketCapturesOperations
+    from .connection_monitors_operations_async import ConnectionMonitorsOperations
+    from .operations_async import Operations
+    from .public_ip_addresses_operations_async import PublicIPAddressesOperations
+    from .route_filters_operations_async import RouteFiltersOperations
+    from .route_filter_rules_operations_async import RouteFilterRulesOperations
+    from .route_tables_operations_async import RouteTablesOperations
+    from .routes_operations_async import RoutesOperations
+    from .bgp_service_communities_operations_async import BgpServiceCommunitiesOperations
+    from .usages_operations_async import UsagesOperations
+    from .virtual_networks_operations_async import VirtualNetworksOperations
+    from .subnets_operations_async import SubnetsOperations
+    from .virtual_network_peerings_operations_async import VirtualNetworkPeeringsOperations
+    from .virtual_network_gateways_operations_async import VirtualNetworkGatewaysOperations
+    from .virtual_network_gateway_connections_operations_async import VirtualNetworkGatewayConnectionsOperations
+    from .local_network_gateways_operations_async import LocalNetworkGatewaysOperations
+    from .network_management_client_operations_async import NetworkManagementClientOperationsMixin
+except (SyntaxError, ImportError):
+    from .application_gateways_operations import ApplicationGatewaysOperations
+    from .application_security_groups_operations import ApplicationSecurityGroupsOperations
+    from .available_endpoint_services_operations import AvailableEndpointServicesOperations
+    from .express_route_circuit_authorizations_operations import ExpressRouteCircuitAuthorizationsOperations
+    from .express_route_circuit_peerings_operations import ExpressRouteCircuitPeeringsOperations
+    from .express_route_circuits_operations import ExpressRouteCircuitsOperations
+    from .express_route_service_providers_operations import ExpressRouteServiceProvidersOperations
+    from .load_balancers_operations import LoadBalancersOperations
+    from .load_balancer_backend_address_pools_operations import LoadBalancerBackendAddressPoolsOperations
+    from .load_balancer_frontend_ip_configurations_operations import LoadBalancerFrontendIPConfigurationsOperations
+    from .inbound_nat_rules_operations import InboundNatRulesOperations
+    from .load_balancer_load_balancing_rules_operations import LoadBalancerLoadBalancingRulesOperations
+    from .load_balancer_network_interfaces_operations import LoadBalancerNetworkInterfacesOperations
+    from .load_balancer_probes_operations import LoadBalancerProbesOperations
+    from .network_interfaces_operations import NetworkInterfacesOperations
+    from .network_interface_ip_configurations_operations import NetworkInterfaceIPConfigurationsOperations
+    from .network_interface_load_balancers_operations import NetworkInterfaceLoadBalancersOperations
+    from .network_security_groups_operations import NetworkSecurityGroupsOperations
+    from .security_rules_operations import SecurityRulesOperations
+    from .default_security_rules_operations import DefaultSecurityRulesOperations
+    from .network_watchers_operations import NetworkWatchersOperations
+    from .packet_captures_operations import PacketCapturesOperations
+    from .connection_monitors_operations import ConnectionMonitorsOperations
+    from .operations import Operations
+    from .public_ip_addresses_operations import PublicIPAddressesOperations
+    from .route_filters_operations import RouteFiltersOperations
+    from .route_filter_rules_operations import RouteFilterRulesOperations
+    from .route_tables_operations import RouteTablesOperations
+    from .routes_operations import RoutesOperations
+    from .bgp_service_communities_operations import BgpServiceCommunitiesOperations
+    from .usages_operations import UsagesOperations
+    from .virtual_networks_operations import VirtualNetworksOperations
+    from .subnets_operations import SubnetsOperations
+    from .virtual_network_peerings_operations import VirtualNetworkPeeringsOperations
+    from .virtual_network_gateways_operations import VirtualNetworkGatewaysOperations
+    from .virtual_network_gateway_connections_operations import VirtualNetworkGatewayConnectionsOperations
+    from .local_network_gateways_operations import LocalNetworkGatewaysOperations
+    from .network_management_client_operations import NetworkManagementClientOperationsMixin
 
 __all__ = [
     'ApplicationGatewaysOperations',
@@ -85,4 +126,5 @@ __all__ = [
     'VirtualNetworkGatewaysOperations',
     'VirtualNetworkGatewayConnectionsOperations',
     'LocalNetworkGatewaysOperations',
+    'NetworkManagementClientOperationsMixin',
 ]

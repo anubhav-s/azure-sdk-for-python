@@ -305,8 +305,7 @@ class LocalNetworkGatewaysOperations(object):
          ~azure.mgmt.network.v2015_06_15.models.LocalNetworkGatewayPaged[~azure.mgmt.network.v2015_06_15.models.LocalNetworkGateway]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.list.metadata['url']
@@ -336,6 +335,11 @@ class LocalNetworkGatewaysOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters)
+            return request, header_parameters
+
+        def internal_paging(next_link=None):
+            request, header_parameters = prepare_request(next_link)
+
             response = self._client.send(
                 request, header_parameters, stream=False, **operation_config)
 
@@ -347,12 +351,10 @@ class LocalNetworkGatewaysOperations(object):
             return response
 
         # Deserialize response
-        deserialized = models.LocalNetworkGatewayPaged(internal_paging, self._deserialize.dependencies)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.LocalNetworkGatewayPaged(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.LocalNetworkGatewayPaged(internal_paging, self._deserialize.dependencies, header_dict)
 
         return deserialized
     list.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/localNetworkGateways'}
