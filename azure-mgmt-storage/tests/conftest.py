@@ -10,4 +10,4 @@ import sys
 # Ignore collection of async tests for Python 2
 collect_ignore = []
 if sys.version_info < (3,6):
-    collect_ignore.append("test_mgmt_storage_async")
+    collect_ignore.append("test_mgmt_storage_async.py")
